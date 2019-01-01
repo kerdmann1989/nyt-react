@@ -51,26 +51,28 @@ class Home extends Component {
     });
   }
 
-  handleSaveButton = (id) => {
-    const findArticleByID = this.state.articles.find((el) => el._id === id);
-    console.log("findArticleByID: ", findArticleByID);
-    const newSave = {title: findArticleByID.headline.main, date: findArticleByID.pub_date, url: findArticleByID.web_url}
-    API.saveArticle(newSave)
-      .then(this.getSavedArticles())
-      .catch(err => console.log(err));
+  // handleSaveButton = (id) => {
+  //   console.log("click")
+  //   const findArticleByID = this.state.articles.find((el) => el._id === id);
+  //   console.log("findArticleByID: ", findArticleByID);
+  //   const newSave = {title: findArticleByID.headline.main, date: findArticleByID.pub_date, url: findArticleByID.web_url}
+  //   API.saveArticle(newSave)
+  //     .then(this.getSavedArticles())
+  //     .catch(err => console.log(err));
 
-  }
+  // }
 
-  // handleSaveButton = (event) => {
-  //   // event.preventDefault();
-  //   API.saveArticle({
-  //     title: this.state.headline.main,
-  //     date: this.state.date,
-  //     url: this.state.web_url
-  //   })
-  //   .then(res => this.savedArticles())
-  //   .catch(err => console.log(err));
-  // };
+  handleSaveButton = (event) => {
+    // event.preventDefault();
+    console.log("Clicked Again")
+    API.saveArticle({
+      title: this.state.articles.headline,
+      date: this.state.articles.date,
+      url: this.state.articles.web_url
+    })
+    .then(res => this.getSavedArticles())
+    .catch(err => console.log(err));
+  };
 
   handleStartYear = (event) => {
     this.setState({ start: event.target.value });
@@ -115,19 +117,19 @@ class Home extends Component {
     ));
 }
 
-// renderSaved = () => {
-//   return this.state.savedArticles.map(save => (
-//     <Saved 
-//     _id={save._id}
-//     key={save._id}
-//     title={save.title}
-//     date={save.date}
-//     url={save.url}
-//     handleDeleteButton={this.handleDeleteButton}
-//     getSavedArticles={this.getSavedArticles}
-//     />
-//   ))
-// }
+renderSaved = () => {
+  return this.state.savedArticles.map(save => (
+    <Saved 
+    _id={save._id}
+    key={save._id}
+    title={save.title}
+    date={save.date}
+    url={save.url}
+    handleDeleteButton={this.handleDeleteButton}
+    getSavedArticles={this.getSavedArticles}
+    />
+  ))
+}
 
   render() {
     return (
@@ -147,7 +149,7 @@ class Home extends Component {
           />
           <div>
             <h1>Saved</h1>
-            {/* {this.renderSaved()} */}
+            {this.renderSaved()}
           </div>
         
                {/* 

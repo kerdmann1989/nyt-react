@@ -11,7 +11,7 @@ const App = () =>
     <div>
       <Nav />
       <Route exact path="/" component={Home} />
-      <Route exact path="/saved" component={Saved} />
+      <Route exact path="/articles" component={Saved} />
     </div>
   </Router>;
 

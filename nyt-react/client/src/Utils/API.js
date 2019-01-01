@@ -17,7 +17,7 @@ const API =  {
   },
 
   getArticles: function() {
-    return axios.get("/api/saved");
+    return axios.get("/api/articles");
   },
 
   saveArticle: function(articleObj) {
@@ -25,7 +25,7 @@ const API =  {
   },
 
   deleteArticle: function(id) {
-    return axios.delete(`/api/saved/${id}`);
+    return axios.delete(`/api/articles/${id}`);
   }
 };
 
