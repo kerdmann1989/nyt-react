@@ -1,1 +1,1 @@
-# nyt-react
+# NYT-React-Search

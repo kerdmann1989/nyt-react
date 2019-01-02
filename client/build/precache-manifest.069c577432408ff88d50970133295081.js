@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/nyt-react/static/js/runtime~main.dd758aa3.js"
   },
   {
-    "revision": "e12ae2c7f44211b44551",
-    "url": "/nyt-react/static/js/main.e12ae2c7.chunk.js"
+    "revision": "2939446a7c901cf4e450",
+    "url": "/nyt-react/static/js/main.2939446a.chunk.js"
   },
   {
     "revision": "ae120c13639f55661941",
     "url": "/nyt-react/static/js/1.ae120c13.chunk.js"
   },
   {
-    "revision": "e12ae2c7f44211b44551",
-    "url": "/nyt-react/static/css/main.5efa3a39.chunk.css"
+    "revision": "2939446a7c901cf4e450",
+    "url": "/nyt-react/static/css/main.3670f7ac.chunk.css"
   },
   {
-    "revision": "c0b3746550b049cd2496ff8ff8944be4",
+    "revision": "7c15a41b3d67e2359a3dcf11c903026a",
     "url": "/nyt-react/index.html"
   }
 ];
