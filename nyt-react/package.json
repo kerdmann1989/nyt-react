@@ -1,10 +1,10 @@
 {
+  "homepage": "https://kerdmann1989.github.io/nyt-react/",
   "name": "mern",
   "version": "1.0.0",
   "description": "Mern Demo",
   "main": "server.js",
   "scripts": {
-    "homepage": "https://kerdmann1989.github.io/nyt-react/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
