@@ -1,7 +1,6 @@
 import React from "react";
 import moment from 'moment';
 
-
 const Saved = props =>
     <div className="container text-center">
         <div className="card-body">

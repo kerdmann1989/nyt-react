@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import API from '../Utils/API';
 import Articles from "../components/Articles";
-// import Main from "../components/Main";
 import Search from "../components/Search"
-// import Saved from "../pages/Saved"
 import Saved from "../components/Saved"
 import SavedHeader from "../components/savedHeader"
 
@@ -53,28 +51,11 @@ class Home extends Component {
     });
   }
 
-  // handleSaveButton = (id) => {
-  //   console.log("click")
-  //   const findArticleByID = this.state.articles.find((el) => el._id === id);
-  //   console.log("findArticleByID: ", findArticleByID);
-  //   const newSave = {title: findArticleByID.headline.main, date: findArticleByID.pub_date, url: findArticleByID.web_url}
-  //   API.saveArticle(newSave)
-  //     .then(this.getSavedArticles())
-  //     .catch(err => console.log(err));
-
-  // }
-
   handleSaveButton = (id) => {
     const findArticleByID = this.state.articles.find((el) => el._id === id);
     console.log("findArticleByID:", findArticleByID);
-    // event.preventDefault();
     const newSave = { title: findArticleByID.headline.main, date: findArticleByID.pub_date, url: findArticleByID.web_url };
     API.saveArticle(newSave)
-      // API.saveArticle({
-      //   title: this.state.articles.headline,
-      //   date: this.state.articles.date,
-      //   url: this.state.articles.web_url
-      //     })
       .then(res => this.getSavedArticles())
       .catch(err => console.log(err));
   };
@@ -152,19 +133,10 @@ class Home extends Component {
           handleSaveButton={this.handleSaveButton}
           getSavedArticles={this.getSavedArticles}
         />
-  <SavedHeader />
+        <SavedHeader />
         <div>
           {this.renderSaved()}
         </div>
-
-        {/* 
-          loop over articles with a .map
-          take data out of articles array 
-          and put it on the screen.
-          make a button
-          make an api call to datapase and store the article
-         */}
-
       </div>
     );
   }
