@@ -7,10 +7,12 @@ class Saved extends Component {
   render() {
     return (
       <div>
-        <h1>YO I'M THE SAVED PAGE</h1>
+        <h1>Saved Articles Here</h1>
+        
       </div>
     );
   }
 }
 
 export default Saved;
+

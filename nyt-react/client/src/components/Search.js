@@ -33,26 +33,26 @@ const Search = props =>
       </div>
     </div>
 
-    <br/><br/>
-<div>
-    <div className="row">
-      <div className="col-lg-12">
-        <div className="card">
-          <div className="card-header text-center text-white bg-dark grey">
-            <h3 className="card-title  mt-2">
-              <strong>
-                <i className="fa fa-newspaper-o" aria-hidden="true"></i> Search Results
+    <br /><br />
+    <div>
+      <div className="row">
+        <div className="col-lg-12">
+          <div className="card">
+            <div className="card-header text-center text-white bg-dark grey">
+              <h3 className="card-title  mt-2">
+                <strong>
+                  <i className="fa fa-newspaper-o" aria-hidden="true"></i> Search Results
               </strong>
-            </h3>
-          </div>
-          <div className="card-body">
-            {props.renderArticles()}
+              </h3>
+            </div>
+            <div className="card-body">
+              {props.renderArticles()}
+            </div>
           </div>
         </div>
       </div>
+      <br /><br />
     </div>
-    <br/><br/>
   </div>
-  </div>
-  
+
 export default Search;

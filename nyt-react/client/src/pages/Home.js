@@ -3,7 +3,9 @@ import API from '../Utils/API';
 import Articles from "../components/Articles";
 // import Main from "../components/Main";
 import Search from "../components/Search"
-import Saved from "../pages/Saved"
+// import Saved from "../pages/Saved"
+import Saved from "../components/Saved"
+import SavedHeader from "../components/savedHeader"
 
 class Home extends Component {
   state = {
@@ -15,37 +17,37 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // this.getSavedArticles();
+    this.getSavedArticles();
   }
 
   getSavedArticles = () => {
     API.getArticles()
-      .then(res => 
-        this.setState({savedArticles: res.data})
-    )
-    .catch(err => console.log(err));
+      .then(res =>
+        this.setState({ savedArticles: res.data })
+      )
+      .catch(err => console.log(err));
   };
 
   deleteArticle = (id) => {
     API.deleteArticle(id)
-      .then(res => 
-      this.getSavedArticles())
-    .catch((err) => {
-      console.log(err);
-    });
-  }; 
-  
+      .then(res =>
+        this.getSavedArticles())
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   getSavedArticles = () => {
     API.getArticles()
-      .then(res => 
+      .then(res =>
         this.setState({ savedArticles: res.data })
-        ).catch((err) => {
-          console.log(err);
-        });
-      }; 
-  
+      ).catch((err) => {
+        console.log(err);
+      });
+  };
+
   handleChange = (event) => {
-    const {name, value} = event.target;
+    const { name, value } = event.target;
     this.setState({
       [name]: value
     });
@@ -62,16 +64,19 @@ class Home extends Component {
 
   // }
 
-  handleSaveButton = (event) => {
+  handleSaveButton = (id) => {
+    const findArticleByID = this.state.articles.find((el) => el._id === id);
+    console.log("findArticleByID:", findArticleByID);
     // event.preventDefault();
-    console.log("Clicked Again")
-    API.saveArticle({
-      title: this.state.articles.headline,
-      date: this.state.articles.date,
-      url: this.state.articles.web_url
-    })
-    .then(res => this.getSavedArticles())
-    .catch(err => console.log(err));
+    const newSave = { title: findArticleByID.headline.main, date: findArticleByID.pub_date, url: findArticleByID.web_url };
+    API.saveArticle(newSave)
+      // API.saveArticle({
+      //   title: this.state.articles.headline,
+      //   date: this.state.articles.date,
+      //   url: this.state.articles.web_url
+      //     })
+      .then(res => this.getSavedArticles())
+      .catch(err => console.log(err));
   };
 
   handleStartYear = (event) => {
@@ -83,62 +88,62 @@ class Home extends Component {
   }
 
   handleTopicChange = (event) => {
-      this.setState({ search: event.target.value });
+    this.setState({ search: event.target.value });
   }
 
   handleDeleteButton = (id) => {
     API.deleteArticle(id)
-    .then(this.getSavedArticles());
+      .then(this.getSavedArticles());
   }
 
   handleSearch = (event) => {
     event.preventDefault();
     API.searchArticles(this.state.search, this.state.start, this.state.end)
-    .then((articles) => {
-      console.log(articles.data.response.docs);
+      .then((articles) => {
+        console.log(articles.data.response.docs);
         this.setState({
           articles: articles.data.response.docs
         });
-    })
+      })
   }
 
   renderArticles = () => {
     return this.state.articles.map(article => (
-        <Articles
-            _id={article._id}
-            key={article._id}
-            title={article.headline.main}
-            date={article.pub_date}
-            snippet={article.snippet}
-            url={article.web_url}
-            handleSaveButton={this.handleSaveButton}
-            getSavedArticles={this.getSavedArticles}
-            />
+      <Articles
+        _id={article._id}
+        key={article._id}
+        title={article.headline.main}
+        date={article.pub_date}
+        snippet={article.snippet}
+        url={article.web_url}
+        handleSaveButton={this.handleSaveButton}
+        getSavedArticles={this.getSavedArticles}
+      />
     ));
-}
+  }
 
-renderSaved = () => {
-  return this.state.savedArticles.map(save => (
-    <Saved 
-    _id={save._id}
-    key={save._id}
-    title={save.title}
-    date={save.date}
-    url={save.url}
-    handleDeleteButton={this.handleDeleteButton}
-    getSavedArticles={this.getSavedArticles}
-    />
-  ))
-}
+  renderSaved = () => {
+    return this.state.savedArticles.map(save => (
+      <Saved
+        _id={save._id}
+        key={save._id}
+        title={save.title}
+        date={save.date}
+        url={save.url}
+        handleDeleteButton={this.handleDeleteButton}
+        getSavedArticles={this.getSavedArticles}
+      />
+    ))
+  }
 
   render() {
     return (
       <div className="container bg-white">
-      <br></br>
+        <br></br>
 
         <h1 className="text-info text-center">New York Times Article Search</h1>
         <br></br>
-        <Search 
+        <Search
           handleTopicChange={this.handleTopicChange}
           handleStartYear={this.handleStartYear}
           handleEndYear={this.handleEndYear}
@@ -146,20 +151,20 @@ renderSaved = () => {
           renderArticles={this.renderArticles}
           handleSaveButton={this.handleSaveButton}
           getSavedArticles={this.getSavedArticles}
-          />
-          <div>
-            <h1>Saved</h1>
-            {this.renderSaved()}
-          </div>
-        
-               {/* 
+        />
+  <SavedHeader />
+        <div>
+          {this.renderSaved()}
+        </div>
+
+        {/* 
           loop over articles with a .map
           take data out of articles array 
           and put it on the screen.
           make a button
           make an api call to datapase and store the article
          */}
-      
+
       </div>
     );
   }

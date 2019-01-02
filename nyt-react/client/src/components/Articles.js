@@ -9,9 +9,9 @@ const Articles = (props) =>
         <p className="text-center">Date Published: {moment(props.date).format('M/DD/YYYY')}</p>
         <span>
             <a href={props.url} target="_blank" rel="noopener noreferrer">
-                <button className="btn btn-grey">View Article</button>
+                <button className="btn btn-grey mr-1">View Article</button>
             </a>
-            <button className="btn btn-grey" onClick={() => props.handleSaveButton(props._id)}>Save Article</button>
+            <button className="btn btn-info ml-1" onClick={() => props.handleSaveButton(props._id)}>Save Article</button>
 
         </span>
         <hr></hr>
