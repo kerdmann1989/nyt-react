@@ -26,20 +26,21 @@ class Home extends Component {
       .catch(err => console.log(err));
   };
 
+
+
+  getSavedArticles = () => {
+    API.getArticles()
+      .then(res => this.setState({ savedArticles: res.data })
+      ).catch((err) => {
+        console.log(err);
+      });
+  };
+
   deleteArticle = (id) => {
     API.deleteArticle(id)
       .then(res =>
         this.getSavedArticles())
       .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  getSavedArticles = () => {
-    API.getArticles()
-      .then(res =>
-        this.setState({ savedArticles: res.data })
-      ).catch((err) => {
         console.log(err);
       });
   };
