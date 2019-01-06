@@ -3,12 +3,12 @@ import {Link} from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <ul className="nav justify-content-center">
+    <ul className="container nav bg-info justify-content-center">
       <li className="nav-item">
-        <Link className="nav-link" to="/">Home</Link>
+        <Link className="nav-link text-white" to="/"><h3>Home</h3></Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/saved">Saved Articles</Link>
+        <Link className="nav-link text-white" to="/articles"><h3>Saved Articles</h3></Link>
       </li>
     </ul>
   );

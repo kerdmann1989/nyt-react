@@ -134,10 +134,10 @@ class Home extends Component {
           handleSaveButton={this.handleSaveButton}
           getSavedArticles={this.getSavedArticles}
         />
-        <SavedHeader />
+        {/* <SavedHeader />
         <div>
           {this.renderSaved()}
-        </div>
+        </div> */}
       </div>
     );
   }
